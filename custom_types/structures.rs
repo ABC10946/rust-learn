@@ -19,10 +19,13 @@ struct Rectangle {
 	bottom_right: Point,
 }
 
-fn rect_area(rectangle: Rectangle) -> f32 {
-	let width = (rectangle.top_left.x - rectangle.bottom_right.x).abs();
-	let height = (rectangle.top_left.y - rectangle.bottom_right.y).abs();
-	width * height
+impl Rectangle {
+	fn area(&self) -> f32 {
+		let Rectangle {top_left: Point {x: x1, y: y1}, bottom_right: Point {x: x2, y: y2}} = *self;
+		let width = (x2 - x1).abs();
+		let height = (y2 - y1).abs();
+		width * height
+	}
 }
 
 fn main() {
@@ -35,7 +38,7 @@ fn main() {
 	let point: Point = Point {x:10.0, y:10.0};
 	println!("point coordinates: ({}, {})", point.x, point.y);
 
-	let bottom_right = Point {x:0.0, y: 0.0};
+	let bottom_right = Point {x:-2.0, y: -2.0};
 	println!("second point: ({}, {})", bottom_right.x, bottom_right.y);
 
 	let Point {x: left_edge, y:top_edge} = point;
@@ -45,7 +48,7 @@ fn main() {
 		bottom_right: bottom_right,
 	};
 
-	println!("rectangle area: {}", rect_area(_rectangle));
+	println!("rectangle area: {}", _rectangle.area());
 
 	let _unit = Unit;
 	let pair = Pair(1, 0.1);
