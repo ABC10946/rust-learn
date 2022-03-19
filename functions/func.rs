@@ -23,6 +23,8 @@ fn fizzbuzz(n: u32) -> () {
 }
 
 fn fizzbuzz_to(n: u32) {
+	// 1..nは1,2,3,..,n-1
+	// 1..=nは1,2,3,..,n-1,n
 	for n in 1..=n {
 		fizzbuzz(n);
 	}
